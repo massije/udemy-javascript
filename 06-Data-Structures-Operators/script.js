@@ -55,55 +55,69 @@ const restaurant = {
   },
 };
 
-// Split and Join
-console.log('a+very+nice+string'.split('+'));
-console.log('Jorge Martin'.split(' '));
+const getCode = str => str.slice(0, 3).toUpperCase();
 
-const [firstName, lastName] = 'Jorge Martin'.split(' ');
-console.log(firstName, lastName);
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = `${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
+    '_',
+    ' '
+  )} from ${getCode(from)} to ${getCode(to)} (${time.replace(
+    ':',
+    'h'
+  )})`.padStart(50, '-');
+  console.log(output);
+}
 
-const newName = ['Mr.', firstName, lastName.toUpperCase('')].join(' ');
-console.log(newName);
+// // Split and Join
+// console.log('a+very+nice+string'.split('+'));
+// console.log('Jorge Martin'.split(' '));
 
-const capitalizeName = function (name) {
-  const names = name.split(' ');
-  const namesUpper = [];
+// const [firstName, lastName] = 'Jorge Martin'.split(' ');
+// console.log(firstName, lastName);
 
-  for (const n of names) {
-    // namesUpper.push(n[0].toUpperCase() + n.slice(1));
-    namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
-  }
-  console.log(namesUpper.join(' '));
-};
+// const newName = ['Mr.', firstName, lastName.toUpperCase('')].join(' ');
+// console.log(newName);
 
-capitalizeName('jessica ann smith davis');
-capitalizeName('jorge martin');
+// const capitalizeName = function (name) {
+//   const names = name.split(' ');
+//   const namesUpper = [];
 
-// Padding
-const message = 'Go to gate 23!';
-console.log(message.padStart(20, '+').padEnd(30, '+'));
-console.log('jorge'.padStart(20, '+').padEnd(30, '+'));
+//   for (const n of names) {
+//     // namesUpper.push(n[0].toUpperCase() + n.slice(1));
+//     namesUpper.push(n.replace(n[0], n[0].toUpperCase()));
+//   }
+//   console.log(namesUpper.join(' '));
+// };
 
-const massCreditCard = function (number) {
-  const str = String(number);
-  const last = str.slice(-4);
-  return last.padStart(str.length, '*');
-};
+// capitalizeName('jessica ann smith davis');
+// capitalizeName('jorge martin');
 
-console.log(massCreditCard(12345678));
-console.log(massCreditCard(123456787654321));
-console.log(massCreditCard('12345678'));
+// // Padding
+// const message = 'Go to gate 23!';
+// console.log(message.padStart(20, '+').padEnd(30, '+'));
+// console.log('jorge'.padStart(20, '+').padEnd(30, '+'));
 
-// Repeat
-const message2 = 'Bad waether... All Departures Delayed... ';
-console.log(message2.repeat(5));
+// const massCreditCard = function (number) {
+//   const str = String(number);
+//   const last = str.slice(-4);
+//   return last.padStart(str.length, '*');
+// };
 
-const planesInLine = function (n) {
-  console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
-};
-planesInLine(5);
-planesInLine(8);
-planesInLine(3);
+// console.log(massCreditCard(12345678));
+// console.log(massCreditCard(123456787654321));
+// console.log(massCreditCard('12345678'));
+
+// // Repeat
+// const message2 = 'Bad waether... All Departures Delayed... ';
+// console.log(message2.repeat(5));
+
+// const planesInLine = function (n) {
+//   console.log(`There are ${n} planes in line ${'✈'.repeat(n)}`);
+// };
+// planesInLine(5);
+// planesInLine(8);
+// planesInLine(3);
 
 //Repeat
 
