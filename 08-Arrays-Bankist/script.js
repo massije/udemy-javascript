@@ -81,6 +81,44 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance}€`;
+};
+
+calcDisplayBalance(account1.movements);
+
+const createUsernames = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(mov => mov[0])
+      .join('');
+  });
+};
+createUsernames(accounts);
+// console.log(accounts);
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const eurToUsd = 1.1;
+
+const movementsUsd = movements.map(mov => Math.round(mov * eurToUsd));
+
+// console.log('original');
+// console.log(movements);
+// console.log('en dolares:');
+// console.log(movementsUsd);
+
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'desposited' : 'withdrew'} ${Math.abs(
+      mov
+    )}`
+);
+
+// console.log(movementsDescriptions);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -188,4 +226,30 @@ currenciesUnique.forEach(function (value, _, map) {
   // el guion bajo significa que es una variable
   console.log(`${_}: ${value}`); // desechable
 });
+
+
+const deposits = movements.filter(mov => mov > 0);
+console.log(movements);
+console.log(deposits);
 */
+
+// console.log('\nMethod Filter');
+// const withdrawals = movements.filter(mov => mov < 0);
+// console.log(withdrawals);
+
+console.log(movements);
+
+//  accumulator -> SNOWBALL
+// const balance = movements.reduce((acc, mov, i) => {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + mov;
+// }, 0);
+
+// console.log(balance);
+
+// calculate MIN value
+
+const min = movements.reduce((acc, mov) => (acc < mov ? acc : mov));
+const max = movements.reduce((acc, mov) => (acc > mov ? acc : mov));
+console.log(min);
+console.log(max);
